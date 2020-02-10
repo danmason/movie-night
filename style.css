@@ -22,14 +22,15 @@ h1 {
  font-size: 2em;
  font-family: Tahoma;
  font-weight: bold;
- text-decoration: none;
- color: black;
+ color: #4e4d4d;
+ transition: 0.2s;
 }
 
 #movie-title:hover
 {
   color:#bb44eb;
   cursor:pointer;
+  transition: 0.2s;
 }
 
 #trailer {
