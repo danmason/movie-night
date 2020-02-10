@@ -33,5 +33,14 @@ h1 {
 }
 
 #trailer {
-  margin-top: 70px;
+  margin-top: 50px;
+}
+
+#time {
+  font-family: Roboto;
+  color: #3b4a4a;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-top: 40px;
 }
