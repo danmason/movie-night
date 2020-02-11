@@ -35,7 +35,7 @@ h1 {
 
 #movie-title {
  font-size: 30pt;
- font-family: Tahoma;
+ font-family: 'Roboto', sans-serif;
  font-weight: bold;
  color: #4e4d4d;
  transition: 0.2s;
