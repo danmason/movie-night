@@ -4,7 +4,7 @@ require 'json'
 require 'uri'
 require 'net/http'
 require 'colorize'
-require 'yourub'
+require 'yt'
 
 
 class Movie
@@ -12,11 +12,8 @@ class Movie
 #  Define Youtube Acc Info
 
   def initialize
-    options   = { developer_key:      'mySecretKey',
-                  application_name:   'yourub',
-                  application_version: 2.0,
-                  log_level: 3 }
-    @yt       = Yourub::Client.new(options)
+    Yt.configuration.api_key = 'youtubeApiKey'
+    @yt       = Yt::Collections::Videos.new
     @repo     = ""
     @username = ""
   end
@@ -39,7 +36,7 @@ class Movie
 #  Add and Push to GitHub
 
   def run_git
-    system("git add movie.yml")
+    system("git add _data/movie.yml")
     system("git commit -m 'Movie Updated'")
     system("git remote add origin git@github.com:#{@username}/#{@repo}")
     system("git push origin master")
@@ -70,6 +67,7 @@ class Movie
       @score = 'Unknown'
      end
 
+    @name = movie_name
     @rated = info['Rated']
     @genre = info['Genre']
     @actors = wrap(info['Actors'], 48)
@@ -96,16 +94,15 @@ class Movie
 #  Search youtube for trailer
 
   def yt_trailer
-    @yt.search(query: "#{@name}") do |search|
-      @link = search.id
-    end
+    trailer_results = @yt.where(q: "#{@name} trailer", safe_search: 'none', order: 'relevance')
+    @link = trailer_results.first.id
   end
 
 
 #  Save output
 
   def save_txt
-    File.open("movie.yml", "wb") do |row|
+    File.open("_data/movie.yml", "wb") do |row|
       row <<       "name: #{@title}\n"
       row <<       "year: #{@year}\n"
       row <<      "genre: #{@genre}\n"
@@ -121,8 +118,8 @@ class Movie
 
   def search(movie)
     movie(movie)
-    save_txt
     yt_trailer
+    save_txt
   end
 
 
@@ -140,5 +137,3 @@ end     # END OF CLASS
   else
     movie.search(ARGV[0])
   end
-
-
