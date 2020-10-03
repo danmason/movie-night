@@ -14,3 +14,4 @@ install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
 end
 gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 gem "nokogiri", ">= 1.10.8"
+gem "yourub"
