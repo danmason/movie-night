@@ -24,6 +24,7 @@ body {
 #content {
  margin: auto;
  text-align:center;
+ background: #fff;
 }
 
 h1 {
@@ -49,7 +50,7 @@ h1 {
 }
 
 #trailer {
-  margin-top: 50px;
+
 }
 
 #scheduled-time {
@@ -58,5 +59,7 @@ h1 {
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
-  margin-top: 40px;
+  /*! margin-top: 20px; */
+  margin-bottom: 0px;
 }
+
